@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Welcome to EasyOCR server.'
+    return 'Welcome to EasyOCR server.\n'
 
 @app.route('/ocr', methods=['POST'])
 def ocr():
@@ -35,5 +35,4 @@ def ocr():
     return Response(json.dumps(results, ensure_ascii=False), mimetype='application/json')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5555)
-    
+    app.run(host='0.0.0.0', port=5556)

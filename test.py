@@ -28,7 +28,7 @@ def ocr():
         return jsonify({'error': 'Unsupported file type'}), 415
 
     results = {}
-    reader = easyocr.Reader(['ja'])
+    reader = easyocr.Reader(['ja', 'en'])
     for i, image in enumerate(images):
         text = reader.readtext(np.array(image), detail = 0)
         results['page-' + str(i+1)] = text

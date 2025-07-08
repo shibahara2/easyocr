@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, Response
 from pdf2image import convert_from_bytes
 from PIL import Image
 import json
+import numpy as np
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def ocr():
     results = {}
     reader = easyocr.Reader(['en'])
     for i, image in enumerate(images):
-        text = reader.readtext(image, detail = 0)
+        text = reader.readtext(np.array(image), detail = 0)
         results['page-' + str(i+1)] = text
 
     return Response(json.dumps(results, ensure_ascii=False), mimetype='application/json')
